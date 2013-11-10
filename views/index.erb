@@ -1,0 +1,10 @@
+<h1>Hello, <%= params[:name] %></h1>
+
+<p>The time is: <%= @time %></p>
+
+<form action="/file" method="POST">
+  <label>Input string</label>
+  <input type="text" name="file_string_input" />
+  <textarea name="file_body_input"></textarea>
+  <input type="submit" value="Submit" />
+</form>
