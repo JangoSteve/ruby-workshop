@@ -1,18 +1,3 @@
-Thread.new do
-  loop do
-    input = gets.chomp
-    if input == "s"
-      @currently_active.stop
-      if @currently_active == @player_1
-        @currently_active = @player_2
-      else
-        @currently_active = @player_1
-      end
-      @currently_active.start
-    end
-  end
-end
-
 class ChessTimer
   attr_accessor :timer, :active, :name
 
@@ -55,4 +40,19 @@ rescue Interrupt
   print "\n"
   puts "Exiting."
   exit!
+end
+
+Thread.new do
+  loop do
+    input = gets.chomp
+    if input == "s"
+      @currently_active.stop
+      if @currently_active == @player_1
+        @currently_active = @player_2
+      else
+        @currently_active = @player_1
+      end
+      @currently_active.start
+    end
+  end
 end
