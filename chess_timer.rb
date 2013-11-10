@@ -8,12 +8,13 @@ class ChessTimer
   end
 
   def start
-    self.activate
-    loop do
-      if self.active
-        sleep 1
-        self.timer += 1
-        print "\r#{self.name}: #{Time.now}"
+    Thread.new do
+      loop do
+        if self.active
+          sleep 1
+          self.timer += 1
+          print "\r#{self.name}: #{Time.now}"
+        end
       end
     end
   end
@@ -30,19 +31,13 @@ end
 @player_1 = ChessTimer.new("DJ")
 @player_2 = ChessTimer.new("Carrie")
 
-@player_1.active = true
-
+@player_1.activate
 @currently_active = @player_1
 
-begin
-  @currently_active.start
-rescue Interrupt
-  print "\n"
-  puts "Exiting."
-  exit!
-end
+@player_1.start
+@player_2.start
 
-Thread.new do
+begin
   loop do
     input = gets.chomp
     if input == "s"
@@ -52,7 +47,11 @@ Thread.new do
       else
         @currently_active = @player_1
       end
-      @currently_active.start
+      @currently_active.activate
     end
   end
+rescue Interrupt
+  print "\n"
+  puts "Exiting."
+  exit!
 end
