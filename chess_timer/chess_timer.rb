@@ -1,10 +1,11 @@
 class ChessTimer
-  attr_accessor :timer, :active, :name
+  attr_accessor :timer, :active, :name, :logging
 
-  def initialize(name="Player")
+  def initialize(options={})
     self.timer = 0
     self.active = false
-    self.name = name
+    self.name = options[:name] || "Player"
+    self.logging = options[:logging].nil? ? true : options[:logging]
   end
 
   def start
@@ -13,7 +14,7 @@ class ChessTimer
         if self.active
           sleep 1
           self.timer += 1
-          print "\r#{self.name}: #{Time.now}"
+          print "\r#{self.name}: #{Time.now}" if self.logging
         end
       end
     end

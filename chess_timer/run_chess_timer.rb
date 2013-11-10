@@ -1,7 +1,7 @@
 require './chess_timer'
 
-@player_1 = ChessTimer.new("DJ")
-@player_2 = ChessTimer.new("Carrie")
+@player_1 = ChessTimer.new(:name => "DJ")
+@player_2 = ChessTimer.new(:name => "Carrie")
 
 @player_1.activate
 @currently_active = @player_1

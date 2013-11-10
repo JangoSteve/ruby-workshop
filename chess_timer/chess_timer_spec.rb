@@ -2,7 +2,7 @@ require './chess_timer'
 
 describe ChessTimer do
   before do
-    @player = ChessTimer.new
+    @player = ChessTimer.new(:logging => false)
   end
 
   describe "#initialize" do
@@ -15,7 +15,7 @@ describe ChessTimer do
     end
 
     it "has name set as passed in options" do
-      player = ChessTimer.new("Steve")
+      player = ChessTimer.new(:name => "Steve")
       player.name.should eq("Steve")
     end
   end
